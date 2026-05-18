@@ -14,16 +14,14 @@ struct GliderApp: App {
             ContentView()
                 .toolbar(removing: .title)
                 .containerBackground(.thinMaterial, for: .window)
-        }
+                .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
+        }.windowResizability(.contentSize)
         
         Settings {
             SettingsView()
                 .toolbar(removing: .title)
                 .containerBackground(.thinMaterial, for: .window)
+                .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
         }
-    }
-    
-    #Preview {
-        ContentView()
     }
 }
