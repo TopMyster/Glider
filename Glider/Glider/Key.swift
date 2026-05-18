@@ -13,8 +13,8 @@ struct Key: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: name)
-                .font(.custom("key", size: 28))
-                .frame(width: 50, height: 40)
-        }.clipShape(.rect(cornerRadius: 16))
+                .font(.custom("key", size: 25))
+                .frame(width: 55, height: 40)
+        }.clipShape(.rect(cornerRadius: 12))
     }
 }

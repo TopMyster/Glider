@@ -15,7 +15,8 @@ struct GliderApp: App {
                 .toolbar(removing: .title)
                 .containerBackground(.thinMaterial, for: .window)
                 .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
-        }.windowResizability(.contentSize)
+        }.windowResizability(.contentSize).windowLevel(.floating)
+        
         
         Settings {
             SettingsView()

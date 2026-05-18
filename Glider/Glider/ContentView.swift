@@ -8,24 +8,54 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var muted = false
     var body: some View {
         HStack {
+            //Previous Key
+            Key(name: "backward", action: {
+                
+            })
+            
+            //Play/Pause Key
+            Key(name: "playpause", action: {
+                
+            })
+            
+            //Forward Key
+            Key(name: "forward", action: {
+                
+            })
+            
             //Mute Key
             Key(name: "speaker.slash", action: {
-                
+                mute()
             })
             
             //Volume Down Key
             Key(name: "speaker.wave.1", action: {
-                
+                changeVolume(amount: -5)
             })
             
             //Volume Up Key
             Key(name: "speaker.wave.3", action: {
-                
+                changeVolume(amount: 5)
             })
         }
         .padding()
+    }
+    
+    func changeVolume(amount: Int) {
+        NSAppleScript(source: "set volume output volume ((output volume of (get volume settings)) + \(amount))")?.executeAndReturnError(nil)
+    }
+    
+    func mute() {
+        if muted == false {
+            NSAppleScript(source: "set volume with output muted")?.executeAndReturnError(nil)
+            muted = true
+        } else {
+            NSAppleScript(source: "set volume without output muted")?.executeAndReturnError(nil)
+            muted = false
+        }
     }
 }
 
