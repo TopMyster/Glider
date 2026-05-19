@@ -15,6 +15,6 @@ struct Key: View {
             Image(systemName: name)
                 .font(.custom("key", size: 25))
                 .frame(width: 55, height: 40)
-        }.clipShape(.rect(cornerRadius: 12))
+        }.clipShape(.rect(cornerRadius: 14))
     }
 }

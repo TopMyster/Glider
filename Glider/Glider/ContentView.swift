@@ -9,39 +9,87 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var muted = false
+    @State private var viewMore = false
     var body: some View {
-        HStack {
-            //Previous Key
-            Key(name: "backward", action: {
+        VStack(spacing: 5) {
+            HStack {
+                //Previous Key
+                Key(name: "backward", action: {
+                    
+                })
                 
-            })
-            
-            //Play/Pause Key
-            Key(name: "playpause", action: {
+                //Play/Pause Key
+                Key(name: "playpause", action: {
+                    
+                })
                 
-            })
-            
-            //Forward Key
-            Key(name: "forward", action: {
+                //Forward Key
+                Key(name: "forward", action: {
+                    
+                })
                 
-            })
-            
-            //Mute Key
-            Key(name: "speaker.slash", action: {
-                mute()
-            })
-            
-            //Volume Down Key
-            Key(name: "speaker.wave.1", action: {
-                changeVolume(amount: -5)
-            })
-            
-            //Volume Up Key
-            Key(name: "speaker.wave.3", action: {
-                changeVolume(amount: 5)
-            })
+                //Mute Key
+                Key(name: "speaker.slash", action: {
+                    mute()
+                })
+                
+                //Volume Down Key
+                Key(name: "speaker.wave.1", action: {
+                    changeVolume(amount: -5)
+                })
+                
+                //Volume Up Key
+                Key(name: "speaker.wave.3", action: {
+                    changeVolume(amount: 5)
+                })
+            }
+            .padding(.top)
+            .padding(.horizontal)
+            if viewMore {
+                HStack {
+                    //Previous Key
+                    Key(name: "backward", action: {
+                        
+                    })
+                    
+                    //Play/Pause Key
+                    Key(name: "playpause", action: {
+                        
+                    })
+                    
+                    //Forward Key
+                    Key(name: "forward", action: {
+                        
+                    })
+                    
+                    //Mute Key
+                    Key(name: "speaker.slash", action: {
+                        mute()
+                    })
+                    
+                    //Volume Down Key
+                    Key(name: "speaker.wave.1", action: {
+                        changeVolume(amount: -5)
+                    })
+                    
+                    //Volume Up Key
+                    Key(name: "speaker.wave.3", action: {
+                        changeVolume(amount: 5)
+                    })
+                }.padding()
+                Button(action: {
+                    viewMore = false
+                }) {
+                    Image(systemName: "control")
+                }.padding(.bottom, 10).padding(.top, 2).buttonStyle(.plain)
+            } else {
+                Button(action: {
+                    viewMore = true
+                }) {
+                    Image(systemName: "control").rotationEffect(.degrees(180))
+                }.padding(.bottom, 5).padding(.top, 2).buttonStyle(.plain)
+            }
         }
-        .padding()
     }
     
     func changeVolume(amount: Int) {
