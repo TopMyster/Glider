@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     @State private var muted = false
     @State private var viewMore = false
+    @State private var time = Date()
+
     var body: some View {
         VStack(spacing: 5) {
             HStack {
@@ -47,10 +50,10 @@ struct ContentView: View {
             .padding(.horizontal)
             if viewMore {
                 HStack {
-                    //Previous Key
-                    Key(name: "backward", action: {
+                    //Time Key
+                    Widget(text: currentTimeString(), action: {
                         
-                    })
+                    }, icon: "clock", tint: .orange)
                     
                     //Play/Pause Key
                     Key(name: "playpause", action: {
@@ -67,15 +70,6 @@ struct ContentView: View {
                         mute()
                     })
                     
-                    //Volume Down Key
-                    Key(name: "speaker.wave.1", action: {
-                        changeVolume(amount: -5)
-                    })
-                    
-                    //Volume Up Key
-                    Key(name: "speaker.wave.3", action: {
-                        changeVolume(amount: 5)
-                    })
                 }.padding()
                 Button(action: {
                     viewMore = false
@@ -89,6 +83,9 @@ struct ContentView: View {
                     Image(systemName: "control").rotationEffect(.degrees(180))
                 }.padding(.bottom, 5).padding(.top, 2).buttonStyle(.plain)
             }
+        }
+        .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
+            time = Date()
         }
     }
     
@@ -105,8 +102,13 @@ struct ContentView: View {
             muted = false
         }
     }
+    
+    func currentTimeString() -> String {
+        time.formatted(date: .omitted, time: .shortened)
+    }
 }
 
 #Preview {
     ContentView()
 }
+
